@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import lodash from 'lodash';
-import Modal from "react-modal";
-import { FaTimes } from "react-icons/fa";
 import { Button } from "./components/button";
 import ProductList from "./components/ProductList";
-import { Form } from "./components/form";
 import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
@@ -38,7 +35,7 @@ const ShopApp: React.FC<IShopProps> = () => {
         }
         setShopData((prevData) => ({
           ...prevData,
-          products: data
+          products: data.reverse()
         }));
       });
     });
@@ -54,16 +51,19 @@ const ShopApp: React.FC<IShopProps> = () => {
   }
 
   const onSubmit = (payload: { title: string; description: string, price: string }) => {
-    const updated = lodash.clone(shopData.products);
-    updated.push({
+    const tempProducts = shopData.products;
+    tempProducts.unshift({
+      id: shopData.products.length + 1,
       title: payload.title,
       description: payload.description,
-      price: payload.price
-    });
+      price: payload.price,
+      isFavorite: false,
+      rating: { rate: 0, count: 0 }
+    })
 
     setShopData((prevData) => ({
       ...prevData,
-      products: updated,
+      products: tempProducts,
       isOpen: false,
       isShowingMessage: true,
       message: 'Adding product...'
@@ -79,9 +79,9 @@ const ShopApp: React.FC<IShopProps> = () => {
           description: payload.description,
         }
       )
-    })
-      .then(res => res.json())
-      .then(json => {
+    }).then(res => res.json())
+      .then((data) => {
+        console.log('resp data : ', data)
         setTimeout(() => {
           setShopData((prevData) => ({
             ...prevData,

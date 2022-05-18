@@ -17,7 +17,7 @@ interface IProduct {
 }
 
 const ProductList: React.FC<IPostsProps> = (props) => {
-  return <div>{props.products.reverse().map((product: IProduct) =>
+  return <div>{props.products.map((product: IProduct) =>
     <SingleProduct key={product.id} index={product.id} product={product} onFav={props.onFav} />)}</div>
 }
 
