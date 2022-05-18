@@ -9,6 +9,7 @@ import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
+import AddProduct from "./components/AddProduct";
 
 interface IShopProps { }
 
@@ -91,6 +92,13 @@ const ShopApp: React.FC<IShopProps> = () => {
       })
   }
 
+  const toggleAddProductModal = () => {
+    setShopData((prevData: any) => ({
+      ...prevData,
+      isOpen: !prevData.isOpen,
+    }));
+  }
+
   const { products, isOpen } = shopData;
   const favCount = shopData.products.filter(product => product.isFavorite).length;
 
@@ -115,14 +123,7 @@ const ShopApp: React.FC<IShopProps> = () => {
       <div className={['container', styles.main].join(' ')} style={{ paddingTop: 0 }}>
         <div className={styles.buttonWrapper}>
           <span role="button">
-            <Button
-              onClick={() => {
-                setShopData((prevData) => ({
-                  ...prevData,
-                  isOpen: true,
-                }));
-              }}
-            >Send product proposal</Button>
+            <Button onClick={toggleAddProductModal}>Send product proposal</Button>
           </span>
           {shopData.isShowingMessage && <div className={styles.messageContainer}>
             <i>{shopData.message}</i>
@@ -138,29 +139,7 @@ const ShopApp: React.FC<IShopProps> = () => {
         {products && !!products.length ? <ProductList products={products} onFav={onFavClick} /> : <div></div>}
       </div>
 
-      <>
-        <Modal
-          isOpen={isOpen}
-          className={styles.reactModalContent}
-          overlayClassName={styles.reactModalOverlay}
-        >
-          <div className={styles.modalContentHelper}>
-            <div
-              className={styles.modalClose}
-              onClick={() => {
-                setShopData((prevData) => ({
-                  ...prevData,
-                  isOpen: false,
-                }));
-              }}
-            ><FaTimes /></div>
-
-            <Form
-              on-submit={onSubmit}
-            />
-          </div>
-        </Modal>
-      </>
+      {isOpen && <AddProduct isOpen={isOpen} toggleAddProductModal={toggleAddProductModal} onSubmit={onSubmit} />}
     </React.Fragment>
   );
 }
