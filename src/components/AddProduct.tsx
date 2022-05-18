@@ -2,12 +2,16 @@ import React from 'react';
 import Modal from "react-modal";
 import styles from "../shopApp.module.css";
 import { FaTimes } from "react-icons/fa";
-import { Form } from "../components/form";
+import { Form } from "./Form";
+
+interface IFormData {
+  title: string; description: string; price: string
+}
 
 interface IAddProductProps {
 	isOpen: boolean;
 	toggleAddProductModal: () => void;
-	onSubmit: (payload: { title: string; description: string; price: string }) => void;
+	onSubmit: (payload: IFormData) => void;
 }
 
 const AddProduct: React.FC<IAddProductProps> = ({ isOpen, toggleAddProductModal, onSubmit }) => {
@@ -25,7 +29,7 @@ const AddProduct: React.FC<IAddProductProps> = ({ isOpen, toggleAddProductModal,
 					<FaTimes />
 				</div>
 
-				<Form on-submit={onSubmit} />
+				<Form onSubmit={onSubmit} />
 			</div>
 		</Modal>
 	)
