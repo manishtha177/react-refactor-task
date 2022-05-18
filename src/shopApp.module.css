@@ -17,6 +17,17 @@
   padding: 32px 0;
 }
 
+.images {
+  margin: 50px inherit;
+  display: flex;
+  justify-content: space-evenly
+}
+
+.images img {
+  max-height: 15em;
+  display: block;
+}
+
 .buttonWrapper {
   margin-bottom: 24px;
 }

@@ -109,22 +109,19 @@ const ShopApp: React.FC<IShopProps> = () => {
   return (
     <React.Fragment>
       <div className={styles.header}>
-        <div className={['container', styles.headerImageWrapper].join(' ')}>
+        <div className={`container ${styles.headerImageWrapper}`}>
           <img src={logo} className={styles.headerImage} />
         </div>
       </div>
 
       <>
-        <span
-          className={['container', styles.main].join(' ')}
-          style={{ margin: '50px inherit', display: 'flex', justifyContent: 'space-evenly' }}
-        >
-          <img src={img1} style={{ maxHeight: "15em", display: 'block' }} />
-          <img src={img2} style={{ maxHeight: "15rem", display: 'block' }} />
+        <span className={`container ${styles.main} ${styles.images}`}>
+          <img src={img1} alt="docter" />
+          <img src={img2} alt="engineer" />
         </span>
       </>
 
-      <div className={['container', styles.main].join(' ')} style={{ paddingTop: 0 }}>
+      <div className={`container ${styles.main}`} style={{ paddingTop: 0 }}>
         <div className={styles.buttonWrapper}>
           <span role="button">
             <Button onClick={toggleAddProductModal}>Send product proposal</Button>
