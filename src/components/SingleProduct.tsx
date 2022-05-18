@@ -4,8 +4,8 @@ import styles from "./product-list-components.module.css";
 
 interface IProductProps {
   index: number;
-  product: { title: string; description: string; price: number; isFavorite: boolean; rating: { rate: number; count: number } };
-  onFav: (title: string) => void;
+  product: { id: number, title: string; description: string; price: number; isFavorite: boolean; rating: { rate: number; count: number } };
+  onFav: (id: number) => void;
 }
 
 const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
@@ -30,9 +30,7 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
           className={`${actionBarItem} ${product.isFavorite ? "active" : ""
             }`}
           role="button"
-          onClick={() => {
-            onFav(product.title);
-          }}
+          onClick={() => onFav(product.id)}
         >
           <FaStar /> <span className={actionBarItemLabel}>{!!(!!(product.isFavorite)) ? 'Remove from favorites' : 'Add to favorites'}</span>
         </span>

@@ -17,12 +17,11 @@ interface IShopState {
   isOpen: boolean;
   isShowingMessage: boolean;
   message: string;
-  numFavorites: number;
 }
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
-    products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0
+    products: [], isOpen: false, isShowingMessage: false, message: ''
   })
 
   useEffect(() => {
@@ -45,21 +44,12 @@ const ShopApp: React.FC<IShopProps> = () => {
   }, [])
 
 
-  const favClick = (title: string) => {
+  const onFavClick = (id: number) => {
     const prods = shopData.products;
-    const idx = lodash.findIndex(prods, { title: title })
-    let currentFavs = shopData.numFavorites
-    let totalFavs: any;
+    const idx = lodash.findIndex(prods, { id: id })
+    prods[idx].isFavorite = !prods[idx].isFavorite;
 
-    if (prods[idx].isFavorite) {
-      prods[idx].isFavorite = false;
-      totalFavs = --currentFavs
-    } else {
-      totalFavs = ++currentFavs
-      prods[idx].isFavorite = true;
-    }
-
-    setShopData((prevData) => ({ ...prevData, products: prods, numFavorites: totalFavs }));
+    setShopData((prevData) => ({ ...prevData, products: prods }));
   }
 
   const onSubmit = (payload: { title: string; description: string, price: string }) => {
@@ -102,6 +92,8 @@ const ShopApp: React.FC<IShopProps> = () => {
   }
 
   const { products, isOpen } = shopData;
+  const favCount = shopData.products.filter(product => product.isFavorite).length;
+
   return (
     <React.Fragment>
       <div className={styles.header}>
@@ -140,10 +132,10 @@ const ShopApp: React.FC<IShopProps> = () => {
         <div className={styles.statsContainer}>
           <span>Total products: {shopData.products.length}</span>
           {' - '}
-          <span>Number of favorites: {shopData.numFavorites}</span>
+          <span>Number of favorites: {favCount}</span>
         </div>
 
-        {products && !!products.length ? <ProductList products={products} onFav={favClick} /> : <div></div>}
+        {products && !!products.length ? <ProductList products={products} onFav={onFavClick} /> : <div></div>}
       </div>
 
       <>

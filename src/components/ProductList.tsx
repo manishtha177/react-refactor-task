@@ -4,7 +4,7 @@ import SingleProduct from "./SingleProduct";
 
 interface IPostsProps {
   products: any;
-  onFav: (title: string) => void;
+  onFav: (id: number) => void;
 }
 
 const ProductList: React.FC<IPostsProps> = (props) => {
