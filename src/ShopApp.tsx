@@ -7,6 +7,7 @@ import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
 import AddProduct from "./components/AddProduct";
+import useFetch from "./hooks/useFetch";
 
 interface IShopProps { }
 
@@ -22,25 +23,19 @@ const ShopApp: React.FC<IShopProps> = () => {
     products: [], isOpen: false, isShowingMessage: false, message: ''
   })
 
+  const { fetchProducts, addProduct } = useFetch();
+
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products').then((response) => {
-      let jsonResponse = response.json();
-
-      jsonResponse.then((rawData) => {
-        let data: any[] = [];
-
-        for (let i = 0; i < rawData.length; i++) {
-          let updatedProd = rawData[i];
-          data.push(updatedProd);
-        }
-        setShopData((prevData) => ({
-          ...prevData,
-          products: data.reverse()
-        }));
-      });
-    });
+    getProducts()
   }, [])
 
+  const getProducts = async () => {
+    const response = await fetchProducts()
+    setShopData((prevData) => ({
+      ...prevData,
+      products: response.reverse()
+    }));
+  }
 
   const onFavClick = (id: number) => {
     const prods = shopData.products;
@@ -50,7 +45,7 @@ const ShopApp: React.FC<IShopProps> = () => {
     setShopData((prevData) => ({ ...prevData, products: prods }));
   }
 
-  const onSubmit = (payload: { title: string; description: string, price: string }) => {
+  const onSubmit = async (payload: { title: string; description: string, price: string }) => {
     const tempProducts = shopData.products;
     tempProducts.unshift({
       id: shopData.products.length + 1,
@@ -63,33 +58,45 @@ const ShopApp: React.FC<IShopProps> = () => {
 
     setShopData((prevData) => ({
       ...prevData,
-      products: tempProducts,
       isOpen: false,
       isShowingMessage: true,
-      message: 'Adding product...'
-    }));
+      message: 'Adding Product...'
+    }))
 
-    // **this POST request doesn't actually post anything to any database**
-    fetch('https://fakestoreapi.com/products', {
-      method: "POST",
-      body: JSON.stringify(
-        {
-          title: payload.title,
-          price: payload.price,
-          description: payload.description,
-        }
-      )
-    }).then(res => res.json())
-      .then((data) => {
-        console.log('resp data : ', data)
-        setTimeout(() => {
-          setShopData((prevData) => ({
-            ...prevData,
-            isShowingMessage: false,
-            message: ''
-          }))
-        }, 2000)
-      })
+    try {
+      const response = await addProduct(payload)
+      if (response?.id) {
+        setShopData((prevData) => ({
+          ...prevData,
+          products: tempProducts,
+          isShowingMessage: true,
+          message: 'Product added successfully...'
+        }));
+      } else {
+        setShopData((prevData) => ({
+          ...prevData,
+          isOpen: false,
+          isShowingMessage: true,
+          message: 'Failed to add product...'
+        }))
+      }
+    } catch (error) {
+      console.log('error : ', error)
+      setShopData((prevData) => ({
+        ...prevData,
+        isOpen: false,
+        isShowingMessage: true,
+        message: 'Something went wrong'
+      }))
+    } finally {
+      setTimeout(() => {
+        setShopData((prevData) => ({
+          ...prevData,
+          isShowingMessage: false,
+          message: ''
+        }))
+      }, 2000)
+    }
   }
 
   const toggleAddProductModal = () => {
@@ -98,9 +105,6 @@ const ShopApp: React.FC<IShopProps> = () => {
       isOpen: !prevData.isOpen,
     }));
   }
-
-  const { products, isOpen } = shopData;
-  const favCount = shopData.products.filter(product => product.isFavorite).length;
 
   return (
     <React.Fragment>
@@ -133,13 +137,13 @@ const ShopApp: React.FC<IShopProps> = () => {
         <div className={styles.statsContainer}>
           <span>Total products: {shopData.products.length}</span>
           {' - '}
-          <span>Number of favorites: {favCount}</span>
+          <span>Number of favorites: {shopData.products.filter(product => product.isFavorite).length}</span>
         </div>
 
-        {products && !!products.length ? <ProductList products={products} onFav={onFavClick} /> : <div></div>}
+        {shopData.products && !!shopData.products.length ? <ProductList products={shopData.products} onFav={onFavClick} /> : <div></div>}
       </div>
 
-      {isOpen && <AddProduct isOpen={isOpen} toggleAddProductModal={toggleAddProductModal} onSubmit={onSubmit} />}
+      {shopData.isOpen && <AddProduct isOpen={shopData.isOpen} toggleAddProductModal={toggleAddProductModal} onSubmit={onSubmit} />}
     </React.Fragment>
   );
 }
