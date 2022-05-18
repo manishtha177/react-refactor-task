@@ -18,12 +18,11 @@ interface IShopState {
   isShowingMessage: boolean;
   message: string;
   numFavorites: number;
-  prodCount: number
 }
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
-    products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0, prodCount: 0
+    products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0
   })
 
   useEffect(() => {
@@ -39,12 +38,8 @@ const ShopApp: React.FC<IShopProps> = () => {
         }
         setShopData((prevData) => ({
           ...prevData,
-          products: data,
+          products: data
         }));
-        setShopData((prevData) => ({
-          ...prevData,
-          prodCount: data.length
-        }))
       });
     });
   }, [])
@@ -78,19 +73,10 @@ const ShopApp: React.FC<IShopProps> = () => {
     setShopData((prevData) => ({
       ...prevData,
       products: updated,
-      prodCount: lodash.size(shopData.products) + 1
-    }));
-
-    setShopData((prevData) => ({
-      ...prevData,
       isOpen: false,
-    }));
-
-    setShopData((prevData) => ({
-      ...prevData,
       isShowingMessage: true,
       message: 'Adding product...'
-    }))
+    }));
 
     // **this POST request doesn't actually post anything to any database**
     fetch('https://fakestoreapi.com/products', {
@@ -152,7 +138,7 @@ const ShopApp: React.FC<IShopProps> = () => {
         </div>
 
         <div className={styles.statsContainer}>
-          <span>Total products: {shopData.prodCount}</span>
+          <span>Total products: {shopData.products.length}</span>
           {' - '}
           <span>Number of favorites: {shopData.numFavorites}</span>
         </div>
