@@ -7,14 +7,18 @@ interface IPostsProps {
   onFav: (id: number) => void;
 }
 
+interface IProduct {
+  id: number,
+  title: string;
+  description: string;
+  price: number;
+  isFavorite: boolean;
+  rating: { rate: number; count: number }
+}
+
 const ProductList: React.FC<IPostsProps> = (props) => {
-  let productsarr = []
-  for (const [i, p] of props.products.entries()) {
-    productsarr.push(
-      <SingleProduct key={i} index={i} product={p} onFav={props.onFav} />
-    );
-  }
-  return <div>{lodash.reverse(productsarr)}</div>
+  return <div>{props.products.reverse().map((product: IProduct) =>
+    <SingleProduct key={product.id} index={product.id} product={product} onFav={props.onFav} />)}</div>
 }
 
 export default ProductList;

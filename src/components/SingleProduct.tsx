@@ -2,9 +2,18 @@ import React from 'react';
 import { FaStar } from "react-icons/fa";
 import styles from "./product-list-components.module.css";
 
+interface IProduct {
+  id: number,
+  title: string;
+  description: string;
+  price: number;
+  isFavorite: boolean;
+  rating: { rate: number; count: number }
+}
+
 interface IProductProps {
   index: number;
-  product: { id: number, title: string; description: string; price: number; isFavorite: boolean; rating: { rate: number; count: number } };
+  product: IProduct;
   onFav: (id: number) => void;
 }
 
