@@ -3,16 +3,7 @@ import Modal from "react-modal";
 import styles from "../shopApp.module.css";
 import { FaTimes } from "react-icons/fa";
 import { Form } from "./Form";
-
-interface IFormData {
-  title: string; description: string; price: string
-}
-
-interface IAddProductProps {
-	isOpen: boolean;
-	toggleAddProductModal: () => void;
-	onSubmit: (payload: IFormData) => void;
-}
+import { IAddProductProps } from '../interfaces/add-product';
 
 const AddProduct: React.FC<IAddProductProps> = ({ isOpen, toggleAddProductModal, onSubmit }) => {
 	return (

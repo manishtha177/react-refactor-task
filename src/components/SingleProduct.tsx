@@ -1,21 +1,7 @@
 import React from 'react';
 import { FaStar } from "react-icons/fa";
+import { IProductProps } from '../interfaces/single-product';
 import styles from "./product-list-components.module.css";
-
-interface IProduct {
-  id: number,
-  title: string;
-  description: string;
-  price: number;
-  isFavorite: boolean;
-  rating: { rate: number; count: number }
-}
-
-interface IProductProps {
-  index: number;
-  product: IProduct;
-  onFav: (id: number) => void;
-}
 
 const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
   const { product: productClass, productBody, actionBarItem, actionBarItemLabel } = styles

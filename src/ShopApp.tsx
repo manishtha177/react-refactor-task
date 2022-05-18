@@ -8,15 +8,7 @@ import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
 import AddProduct from "./components/AddProduct";
 import useFetch from "./hooks/useFetch";
-
-interface IShopProps { }
-
-interface IShopState {
-  products: any[];
-  isOpen: boolean;
-  isShowingMessage: boolean;
-  message: string;
-}
+import { IShopProps, IShopState } from "./interfaces/shop";
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
