@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IFormData, IFormProps } from "../interfaces/form";
-import { Button } from "./button";
-import styles from "./form.module.css";
+import { Button } from "./Button";
+import styles from "./Form.module.css";
 
 export const Form: React.FC<IFormProps> = (props) => {
   const [formData, setFormData] = useState<IFormData>({ title: "", price: "", description: "" })

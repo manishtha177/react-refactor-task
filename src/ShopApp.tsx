@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import lodash from 'lodash';
-import { Button } from "./components/button";
+import { Button } from "./components/Button";
 import ProductList from "./components/ProductList";
 import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
