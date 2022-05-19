@@ -3,13 +3,12 @@ import { IFormData, IFormError, IFormProps } from "../interfaces/form";
 import { validateForm } from "../utils/validate";
 import { Button } from "./Button";
 import styles from "./Form.module.css";
+import Input from "./Input";
 
 export const Form: React.FC<IFormProps> = (props) => {
-  const [formData, setFormData] = useState<IFormData>({
-    title: "",
-    price: 0,
-    description: "",
-  });
+  const formDummyData = { title: "", price: 0, description: "" };
+  const [formData, setFormData] = useState<IFormData>(formDummyData);
+  
   const [error, setError] = useState<IFormError>({
     title: false,
     price: false,
@@ -40,41 +39,25 @@ export const Form: React.FC<IFormProps> = (props) => {
         price: formData.price,
       });
 
-      setFormData({ title: "", price: 0, description: "" });
+      setFormData(formDummyData);
     } else {
       console.log("errors : ", errors);
       setError(errors);
     }
   };
 
+  const fields = [
+    { name: "title", label: "Product Title", type: "text", placeHolder: "Title...", value: formData.title, onChange: handleChange },
+    { name: "price", label: "Product Price", type: "number", placeHolder: "Price...", value: formData.price, onChange: handleChange },
+  ];
+
   return (
-    <form className={styles.form} onSubmit={(event) => handleSubmit(event)} data-testid={"form"}>
-      <span className={styles.label}>Product title: *</span>
-
-      <input
-        placeholder="Title..."
-        name="title"
-        value={formData.title}
-        className={styles.input}
-        onChange={handleChange}
-      />
-      {error.title && (
-        <span className={styles.error}>Product Title is required</span>
-      )}
-
-      <span className={styles.label}>Product Price: *</span>
-
-      <input
-        placeholder="Price..."
-        type="number"
-        name="price"
-        value={formData.price}
-        className={styles.input}
-        onChange={handleChange}
-      />
-      {error.price && (
-        <span className={styles.error}>Product Price is required</span>
-      )}
+    <form
+      className={styles.form}
+      onSubmit={(event) => handleSubmit(event)}
+      data-testid={"form"}
+    >
+      {fields.map((field) => (<Input field={field} error={error} />))}
 
       <span className={styles.label}>Product Description: *</span>
 
@@ -85,9 +68,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         className={styles.textarea}
         onChange={handleChange}
       />
-      {error.description && (
-        <span className={styles.error}>Product Description is required</span>
-      )}
+      <p className={styles.error}>{error.description && "Product Description is required"}</p>
 
       <div className={styles.buttonWrapper}>
         <Button>Add a product</Button>
