@@ -22,6 +22,7 @@ const ShopApp: React.FC<IShopProps> = () => {
 
   useEffect(() => {
     getProducts();
+    // eslint-disable-next-line
   }, []);
 
   const setData = (data: IShopProps) => {
@@ -137,7 +138,7 @@ const ShopApp: React.FC<IShopProps> = () => {
         {shopData.products && shopData.products.length ? (
           <ProductList products={shopData.products} onFav={onFavClick} />
         ) : (
-          <div></div>
+          <div className={styles.notFound}>No Data Found</div>
         )}
       </div>
 
