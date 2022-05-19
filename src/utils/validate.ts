@@ -5,8 +5,8 @@ export const validateForm = (data: any, error: IFormError) => {
   let errors: any = {};
   for (var obj in error) {
     if (
-      !data[obj].length ||
-      (typeof data[obj] === "string" && !data[obj].trim().length)
+      !data?.[obj].length ||
+      (typeof data?.[obj] === "string" && !data?.[obj].trim()?.length)
     ) {
       formIsValid = false;
       errors[obj] = true;

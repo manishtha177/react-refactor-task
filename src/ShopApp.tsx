@@ -31,13 +31,13 @@ const ShopApp: React.FC<IShopProps> = () => {
 
   const getProducts = async () => {
     const response = await fetchProducts();
-    setData({ products: response.reverse() });
+    setData({ products: response?.reverse() });
   };
 
   const onFavClick = (id: number) => {
-    const prods = shopData.products;
-    const idx = lodash.findIndex(prods, { id: id });
-    prods[idx].isFavorite = !prods[idx].isFavorite;
+    const prods = shopData?.products;
+    const idx = lodash?.findIndex(prods, { id: id });
+    prods[idx].isFavorite = !prods?.[idx]?.isFavorite;
     setData({ products: prods });
   };
 
@@ -55,12 +55,12 @@ const ShopApp: React.FC<IShopProps> = () => {
     try {
       const response = await addProduct(payload);
       if (response?.id) {
-        const tempProducts = shopData.products;
+        const tempProducts = shopData?.products;
         tempProducts.unshift({
           id: response?.id,
-          title: payload.title,
-          description: payload.description,
-          price: payload.price,
+          title: payload?.title,
+          description: payload?.description,
+          price: payload?.price,
           isFavorite: false,
           rating: { rate: 0, count: 0 },
         });
@@ -91,7 +91,7 @@ const ShopApp: React.FC<IShopProps> = () => {
   };
 
   const toggleAddProductModal = () => {
-    setData({ isOpen: !shopData.isOpen });
+    setData({ isOpen: !shopData?.isOpen });
   };
 
   return (
@@ -102,9 +102,9 @@ const ShopApp: React.FC<IShopProps> = () => {
 
       <ProductContainer shopData={shopData} toggleAddProductModal={toggleAddProductModal} onFavClick={onFavClick} />
 
-      {shopData.isOpen && (
+      {shopData?.isOpen && (
         <AddProductModal
-          isOpen={shopData.isOpen}
+          isOpen={shopData?.isOpen}
           toggleAddProductModal={toggleAddProductModal}
           onSubmit={onSubmit}
         />

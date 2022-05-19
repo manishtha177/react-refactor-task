@@ -21,11 +21,11 @@ export const Form: React.FC<IFormProps> = (props) => {
     e.persist();
     setError((prevError) => ({
       ...prevError,
-      [e.target.name]: false,
+      [e?.target?.name]: false,
     }));
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value,
+      [e?.target?.name]: e?.target?.value,
     }));
   };
 
@@ -34,9 +34,9 @@ export const Form: React.FC<IFormProps> = (props) => {
     const { formIsValid, errors } = validateForm(formData, error);
     if (formIsValid) {
       props.onSubmit({
-        title: formData.title,
-        description: formData.description,
-        price: formData.price,
+        title: formData?.title,
+        description: formData?.description,
+        price: formData?.price,
       });
 
       setFormData(formDummyData);
@@ -47,8 +47,8 @@ export const Form: React.FC<IFormProps> = (props) => {
   };
 
   const fields = [
-    { name: "title", label: "Product Title", type: "text", placeHolder: "Title...", value: formData.title, onChange: handleChange },
-    { name: "price", label: "Product Price", type: "number", placeHolder: "Price...", value: formData.price, onChange: handleChange },
+    { name: "title", label: "Product Title", type: "text", placeHolder: "Title...", value: formData?.title, onChange: handleChange },
+    { name: "price", label: "Product Price", type: "number", placeHolder: "Price...", value: formData?.price, onChange: handleChange },
   ];
 
   return (
@@ -64,11 +64,11 @@ export const Form: React.FC<IFormProps> = (props) => {
       <textarea
         placeholder="Start typing product description here..."
         name="description"
-        value={formData.description}
-        className={styles.textarea}
+        value={formData?.description}
+        className={styles?.textarea}
         onChange={handleChange}
       />
-      <p className={styles.error}>{error.description && "Product Description is required"}</p>
+      <p className={styles.error}>{error?.description && "Product Description is required"}</p>
 
       <div className={styles.buttonWrapper}>
         <Button>Add a product</Button>

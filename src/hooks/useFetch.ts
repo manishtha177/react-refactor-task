@@ -6,7 +6,7 @@ const useFetch = () => {
   const fetchProducts = async () => {
     try {
       const resp = await fetch(`${BASE_URL}/products`);
-      const data = await resp.json();
+      const data = await resp?.json();
       return data;
     } catch (error) {
       console.log("error : ", error);
@@ -20,7 +20,7 @@ const useFetch = () => {
         method: "POST",
         body: JSON.stringify(payload),
       });
-      const data = await resp.json();
+      const data = await resp?.json();
       return data;
     } catch (error) {
       console.log("error : ", error);

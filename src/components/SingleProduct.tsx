@@ -15,18 +15,18 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
   // Problem: Now product title can be too long, I just put overflowX as fix now
   return (
     <div className={productClass} data-testid={"single-product"}>
-      <div title={product.title} className={productTitle}>
-        {product.title}
+      <div title={product?.title} className={productTitle}>
+        {product?.title}
       </div>
 
       <p>
         <strong>
-          Rating: {product.rating ? `${product.rating.rate}/5` : ""}
+          Rating: {product?.rating ? `${product?.rating?.rate}/5` : ""}
         </strong>
       </p>
 
       <p>
-        <b>Price: ${+product.price}</b>
+        <b>Price: ${+product?.price}</b>
       </p>
 
       <p className={productBody}>
@@ -34,18 +34,18 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
           <b>Description:</b>
         </span>
         <br />
-        {product.description}
+        {product?.description}
       </p>
 
       <span className={actionBar}>
         <span
-          className={`${actionBarItem} ${product.isFavorite ? "active" : ""}`}
+          className={`${actionBarItem} ${product?.isFavorite ? "active" : ""}`}
           role="button"
-          onClick={() => onFav(product.id)}
+          onClick={() => onFav(product?.id)}
         >
           <FaStar />{" "}
           <span className={actionBarItemLabel} data-testid={"is-favorite"}>
-            {product.isFavorite
+            {product?.isFavorite
               ? "Remove from favorites"
               : "Add to favorites"}
           </span>

@@ -4,16 +4,16 @@ import styles from "./Form.module.css";
 const Input = ({ field, error }: any) => {
   return (
     <div>
-      <span className={styles.label}>{field.label} *</span>
+      <span className={styles.label}>{field?.label} *</span>
       <input
-        placeholder={field.placeHolder}
-        type={field.type}
-        name={field.name}
-        value={field.value}
+        placeholder={field?.placeHolder}
+        type={field?.type}
+        name={field?.name}
+        value={field?.value}
         className={styles.input}
-        onChange={field.onChange}
+        onChange={field?.onChange}
       />
-      <p className={styles.error}>{error[field.name] && `${field.label} is required`}</p>
+      <p className={styles.error}>{error[field?.name] && `${field?.label} is required`}</p>
     </div>
   );
 };

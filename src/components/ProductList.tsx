@@ -5,12 +5,12 @@ import { IProductProps, IProduct } from "../interfaces/product-list";
 const ProductList: React.FC<IProductProps> = (props) => {
   return (
     <div>
-      {props.products.map((product: IProduct) => (
+      {props?.products?.map((product: IProduct) => (
         <SingleProduct
-          key={product.id}
-          index={product.id}
+          key={product?.id}
+          index={product?.id}
           product={product}
-          onFav={props.onFav}
+          onFav={props?.onFav}
         />
       ))}
     </div>

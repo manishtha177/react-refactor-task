@@ -15,27 +15,27 @@ const ProductContainer: React.FC<IProductContainerProps> = ({
         <span role="button">
           <Button onClick={toggleAddProductModal}>Send product proposal</Button>
         </span>
-        {shopData.isShowingMessage && (
+        {shopData?.isShowingMessage && (
           <div className={styles.messageContainer}>
-            <i>{shopData.message}</i>
+            <i>{shopData?.message}</i>
           </div>
         )}
       </div>
 
       <div className={styles.statsContainer}>
-        <span>Total products: {shopData.products.length}</span>
+        <span>Total products: {shopData?.products?.length}</span>
         {" - "}
         <span>
           Number of favorites:{" "}
           {
-            shopData.products.filter((product: IProduct) => product.isFavorite)
-              .length
+            shopData?.products?.filter((product: IProduct) => product?.isFavorite)
+              ?.length
           }
         </span>
       </div>
 
-      {shopData.products && shopData.products.length ? (
-        <ProductList products={shopData.products} onFav={onFavClick} />
+      {shopData?.products && shopData?.products.length ? (
+        <ProductList products={shopData?.products} onFav={onFavClick} />
       ) : (
         <div className={styles.notFound}>No Data Found</div>
       )}
