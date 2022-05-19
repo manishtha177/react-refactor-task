@@ -1,21 +1,38 @@
-import React from 'react';
+import React from "react";
 import { FaStar } from "react-icons/fa";
-import { IProductProps } from '../interfaces/single-product';
+import { IProductProps } from "../interfaces/single-product";
 import styles from "./SingleProduct.module.css";
 
 const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
-  const { product: productClass, productBody, actionBarItem, actionBarItemLabel, productTitle, actionBar } = styles
+  const {
+    product: productClass,
+    productBody,
+    actionBarItem,
+    actionBarItemLabel,
+    productTitle,
+    actionBar,
+  } = styles;
   // Problem: Now product title can be too long, I just put overflowX as fix now
   return (
     <div className={productClass}>
-      <div title={product.title} className={productTitle}>{product.title}</div>
+      <div title={product.title} className={productTitle}>
+        {product.title}
+      </div>
 
-      <p><strong>Rating: {product.rating ? `${product.rating.rate}/5` : ''}</strong></p>
+      <p>
+        <strong>
+          Rating: {product.rating ? `${product.rating.rate}/5` : ""}
+        </strong>
+      </p>
 
-      <p><b>Price: ${+product.price}</b></p>
+      <p>
+        <b>Price: ${+product.price}</b>
+      </p>
 
       <p className={productBody}>
-        <span><b>Description:</b></span>
+        <span>
+          <b>Description:</b>
+        </span>
         <br />
         {product.description}
       </p>
@@ -26,11 +43,16 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
           role="button"
           onClick={() => onFav(product.id)}
         >
-          <FaStar /> <span className={actionBarItemLabel}>{!!(!!(product.isFavorite)) ? 'Remove from favorites' : 'Add to favorites'}</span>
+          <FaStar />{" "}
+          <span className={actionBarItemLabel}>
+            {!!!!product.isFavorite
+              ? "Remove from favorites"
+              : "Add to favorites"}
+          </span>
         </span>
       </span>
     </div>
   );
 };
 
-export default SingleProduct
+export default SingleProduct;

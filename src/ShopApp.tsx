@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import lodash from 'lodash';
+import lodash from "lodash";
 import { Button } from "./components/Button";
 import ProductList from "./components/ProductList";
 import logo from "./images/droppe-logo.png";
@@ -12,43 +12,50 @@ import { IShopProps, IShopState } from "./interfaces/shop";
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
-    products: [], isOpen: false, isShowingMessage: false, message: ''
-  })
+    products: [],
+    isOpen: false,
+    isShowingMessage: false,
+    message: "",
+  });
 
   const { fetchProducts, addProduct } = useFetch();
 
   useEffect(() => {
-    getProducts()
-  }, [])
+    getProducts();
+  }, []);
 
   const setData = (data: IShopProps) => {
     setShopData((prevData) => ({
       ...prevData,
-      ...data
+      ...data,
     }));
-  }
+  };
 
   const getProducts = async () => {
-    const response = await fetchProducts()
-    setData({ products: response.reverse() })
-  }
+    const response = await fetchProducts();
+    setData({ products: response.reverse() });
+  };
 
   const onFavClick = (id: number) => {
     const prods = shopData.products;
-    const idx = lodash.findIndex(prods, { id: id })
+    const idx = lodash.findIndex(prods, { id: id });
     prods[idx].isFavorite = !prods[idx].isFavorite;
-    setData({ products: prods })
-  }
+    setData({ products: prods });
+  };
 
-  const onSubmit = async (payload: { title: string; description: string, price: number }) => {
+  const onSubmit = async (payload: {
+    title: string;
+    description: string;
+    price: number;
+  }) => {
     setData({
       isOpen: false,
       isShowingMessage: true,
-      message: 'Adding Product...'
-    })
+      message: "Adding Product...",
+    });
 
     try {
-      const response = await addProduct(payload)
+      const response = await addProduct(payload);
       if (response?.id) {
         const tempProducts = shopData.products;
         tempProducts.unshift({
@@ -57,37 +64,37 @@ const ShopApp: React.FC<IShopProps> = () => {
           description: payload.description,
           price: payload.price,
           isFavorite: false,
-          rating: { rate: 0, count: 0 }
-        })
+          rating: { rate: 0, count: 0 },
+        });
         setData({
           products: tempProducts,
           isShowingMessage: true,
-          message: 'Product added successfully...'
-        })
+          message: "Product added successfully...",
+        });
       } else {
         setData({
           isOpen: false,
           isShowingMessage: true,
-          message: 'Failed to add product...'
-        })
+          message: "Failed to add product...",
+        });
       }
     } catch (error) {
-      console.log('error : ', error)
+      console.log("error : ", error);
       setData({
         isOpen: false,
         isShowingMessage: true,
-        message: 'Something went wrong'
-      })
+        message: "Something went wrong",
+      });
     } finally {
       setTimeout(() => {
-        setData({ isShowingMessage: false, message: '' })
-      }, 2000)
+        setData({ isShowingMessage: false, message: "" });
+      }, 2000);
     }
-  }
+  };
 
   const toggleAddProductModal = () => {
-    setData({ isOpen: !shopData.isOpen })
-  }
+    setData({ isOpen: !shopData.isOpen });
+  };
 
   return (
     <React.Fragment>
@@ -107,25 +114,42 @@ const ShopApp: React.FC<IShopProps> = () => {
       <div className={`container ${styles.main}`} style={{ paddingTop: 0 }}>
         <div className={styles.buttonWrapper}>
           <span role="button">
-            <Button onClick={toggleAddProductModal}>Send product proposal</Button>
+            <Button onClick={toggleAddProductModal}>
+              Send product proposal
+            </Button>
           </span>
-          {shopData.isShowingMessage && <div className={styles.messageContainer}>
-            <i>{shopData.message}</i>
-          </div>}
+          {shopData.isShowingMessage && (
+            <div className={styles.messageContainer}>
+              <i>{shopData.message}</i>
+            </div>
+          )}
         </div>
 
         <div className={styles.statsContainer}>
           <span>Total products: {shopData.products.length}</span>
-          {' - '}
-          <span>Number of favorites: {shopData.products.filter(product => product.isFavorite).length}</span>
+          {" - "}
+          <span>
+            Number of favorites:{" "}
+            {shopData.products.filter((product) => product.isFavorite).length}
+          </span>
         </div>
 
-        {shopData.products && !!shopData.products.length ? <ProductList products={shopData.products} onFav={onFavClick} /> : <div></div>}
+        {shopData.products && !!shopData.products.length ? (
+          <ProductList products={shopData.products} onFav={onFavClick} />
+        ) : (
+          <div></div>
+        )}
       </div>
 
-      {shopData.isOpen && <AddProduct isOpen={shopData.isOpen} toggleAddProductModal={toggleAddProductModal} onSubmit={onSubmit} />}
+      {shopData.isOpen && (
+        <AddProduct
+          isOpen={shopData.isOpen}
+          toggleAddProductModal={toggleAddProductModal}
+          onSubmit={onSubmit}
+        />
+      )}
     </React.Fragment>
   );
-}
+};
 
 export default ShopApp;

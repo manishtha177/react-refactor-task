@@ -1,11 +1,15 @@
 export interface IFormData {
-    title: string; description: string; price: number
+  title: string;
+  description: string;
+  price: number;
 }
 
 export interface IFormError {
-    title: boolean; description: boolean; price: boolean
+  title: boolean;
+  description: boolean;
+  price: boolean;
 }
 
 export interface IFormProps {
-    onSubmit: (payload: IFormData) => void;
+  onSubmit: (payload: IFormData) => void;
 }
