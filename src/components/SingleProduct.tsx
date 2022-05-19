@@ -8,7 +8,7 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
   // Problem: Now product title can be too long, I just put overflowX as fix now
   return (
     <div className={productClass}>
-      <span className={productTitle}>{product.title}</span>
+      <div title={product.title} className={productTitle}>{product.title}</div>
 
       <p><strong>Rating: {product.rating ? `${product.rating.rate}/5` : ''}</strong></p>
 
