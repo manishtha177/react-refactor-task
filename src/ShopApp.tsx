@@ -40,7 +40,7 @@ const ShopApp: React.FC<IShopProps> = () => {
     setData({ products: prods })
   }
 
-  const onSubmit = async (payload: { title: string; description: string, price: string }) => {
+  const onSubmit = async (payload: { title: string; description: string, price: number }) => {
     setData({
       isOpen: false,
       isShowingMessage: true,

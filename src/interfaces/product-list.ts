@@ -1,5 +1,5 @@
 export interface IPostsProps {
-    products: any;
+    products: IProduct[];
     onFav: (id: number) => void;
 }
 

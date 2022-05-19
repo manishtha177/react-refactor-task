@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { IFormData } from '../interfaces/form';
 
-const BASE_URL = "https://fakestoreapi.com"
+const BASE_URL = "https://fakestoreapi.com";
 
 const useFetch = () => {
   const fetchProducts = async () => {
@@ -14,7 +15,7 @@ const useFetch = () => {
     }
   }
 
-  const addProduct = async (payload: any) => {
+  const addProduct = async (payload: IFormData) => {
     try {
       const resp = await fetch(`${BASE_URL}/products`, {
         method: "POST",

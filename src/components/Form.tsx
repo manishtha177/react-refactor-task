@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, SyntheticEvent } from "react";
 import { IFormData, IFormProps } from "../interfaces/form";
 import { Button } from "./Button";
 import styles from "./Form.module.css";
 
 export const Form: React.FC<IFormProps> = (props) => {
-  const [formData, setFormData] = useState<IFormData>({ title: "", price: "", description: "" })
+  const [formData, setFormData] = useState<IFormData>({ title: "", price: 0, description: "" })
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.persist();
     setFormData(prevData => ({
       ...prevData,
@@ -14,7 +14,7 @@ export const Form: React.FC<IFormProps> = (props) => {
     }))
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
     if (!formData.title) {
@@ -35,7 +35,7 @@ export const Form: React.FC<IFormProps> = (props) => {
       price: formData.price,
     });
     
-    setFormData({ title: "", price: "", description: "" })
+    setFormData({ title: "", price: 0, description: "" })
   };
 
   return (
@@ -54,6 +54,7 @@ export const Form: React.FC<IFormProps> = (props) => {
 
       <input
         placeholder="Price..."
+        type="number"
         name="price"
         value={formData.price}
         className={styles.input}

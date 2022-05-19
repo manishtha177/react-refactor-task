@@ -1,5 +1,5 @@
 export interface IFormData {
-    title: string; description: string; price: string
+    title: string; description: string; price: number
 }
 
 export interface IAddProductProps {

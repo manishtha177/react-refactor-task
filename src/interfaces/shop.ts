@@ -1,7 +1,9 @@
+import { IProduct } from "./product-list";
+
 export interface IShopProps { }
 
 export interface IShopState {
-  products: any[];
+  products: IProduct[];
   isOpen: boolean;
   isShowingMessage: boolean;
   message: string;
