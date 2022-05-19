@@ -2,7 +2,7 @@ import * as React from "react";
 import SingleProduct from "./SingleProduct";
 import { IProductProps, IProduct } from "../interfaces/product-list";
 
-const ProductList: React.FC<IProductProps> = (props) => {
+const ProductList: React.FC<IProductProps> = (props: IProductProps) => {
   return (
     <div>
       {props?.products?.map((product: IProduct) => (

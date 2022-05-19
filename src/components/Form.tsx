@@ -1,15 +1,15 @@
 import React, { useState, ChangeEvent, SyntheticEvent } from "react";
-import { IFormData, IFormError, IFormProps } from "../interfaces/form";
+import { IFormData, IFormError, IFormProps, IField } from "../interfaces/form";
 import { constants } from "../utils/constants";
 import { validateForm } from "../utils/validate";
 import { Button } from "./Button";
 import styles from "./Form.module.css";
 import Input from "./Input";
 
-export const Form: React.FC<IFormProps> = (props) => {
+export const Form: React.FC<IFormProps> = (props: IFormProps) => {
   const formDummyData = { title: "", price: 0, description: "" };
   const [formData, setFormData] = useState<IFormData>(formDummyData);
-  
+
   const [error, setError] = useState<IFormError>({
     title: false,
     price: false,
@@ -47,9 +47,23 @@ export const Form: React.FC<IFormProps> = (props) => {
     }
   };
 
-  const fields = [
-    { name: "title", label: constants.PRODUCT_TITLE, type: "text", placeHolder: "Title...", value: formData?.title, onChange: handleChange },
-    { name: "price", label: constants.PRODUCT_PRICE, type: "number", placeHolder: "Price...", value: formData?.price, onChange: handleChange },
+  const fields: IField[] = [
+    {
+      name: "title",
+      label: constants.PRODUCT_TITLE,
+      type: "text",
+      placeHolder: "Title...",
+      value: formData?.title,
+      onChange: handleChange,
+    },
+    {
+      name: "price",
+      label: constants.PRODUCT_PRICE,
+      type: "number",
+      placeHolder: "Price...",
+      value: formData?.price,
+      onChange: handleChange,
+    },
   ];
 
   return (
@@ -58,7 +72,9 @@ export const Form: React.FC<IFormProps> = (props) => {
       onSubmit={(event) => handleSubmit(event)}
       data-testid={"form"}
     >
-      {fields.map((field) => (<Input field={field} error={error} />))}
+      {fields.map((field) => (
+        <Input field={field} error={error} />
+      ))}
 
       <span className={styles.label}>{constants.PRODUCT_DESCRIPTION}: *</span>
 
@@ -69,7 +85,9 @@ export const Form: React.FC<IFormProps> = (props) => {
         className={styles?.textarea}
         onChange={handleChange}
       />
-      <p className={styles.error}>{error?.description && `${constants.PRODUCT_DESCRIPTION} is required`}</p>
+      <p className={styles.error}>
+        {error?.description && `${constants.PRODUCT_DESCRIPTION} is required`}
+      </p>
 
       <div className={styles.buttonWrapper}>
         <Button>Add a product</Button>

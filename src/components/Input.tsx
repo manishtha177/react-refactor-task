@@ -1,7 +1,8 @@
 import React from "react";
+import { IInputProps } from "../interfaces/form";
 import styles from "./Form.module.css";
 
-const Input = ({ field, error }: any) => {
+const Input: React.FC<IInputProps> = ({ field, error }: IInputProps) => {
   return (
     <div>
       <span className={styles.label}>{field?.label} *</span>

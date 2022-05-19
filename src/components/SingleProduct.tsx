@@ -4,7 +4,7 @@ import { IProductProps } from "../interfaces/single-product";
 import { constants } from "../utils/constants";
 import styles from "./SingleProduct.module.css";
 
-const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
+const SingleProduct: React.FC<IProductProps> = ({ product, onFav }: IProductProps) => {
   const {
     product: productClass,
     productBody,

@@ -3,7 +3,7 @@ import img1 from "../images/img1.png";
 import img2 from "../images/img2.png";
 import styles from "../shopApp.module.css";
 
-const Banner = () => {
+const Banner: React.FC = () => {
   return (
     <>
       <span className={`container ${styles.main} ${styles.images}`}>

@@ -9,7 +9,7 @@ const ProductContainer: React.FC<IProductContainerProps> = ({
   shopData,
   toggleAddProductModal,
   onFavClick,
-}) => {
+}: IProductContainerProps) => {
   return (
     <div className={`container ${styles.main}`} style={{ paddingTop: 0 }}>
       <div className={styles.buttonWrapper}>
