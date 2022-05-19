@@ -14,7 +14,7 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
   } = styles;
   // Problem: Now product title can be too long, I just put overflowX as fix now
   return (
-    <div className={productClass}>
+    <div className={productClass} data-testid={"single-product"}>
       <div title={product.title} className={productTitle}>
         {product.title}
       </div>
@@ -44,8 +44,8 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
           onClick={() => onFav(product.id)}
         >
           <FaStar />{" "}
-          <span className={actionBarItemLabel}>
-            {!!!!product.isFavorite
+          <span className={actionBarItemLabel} data-testid={"is-favorite"}>
+            {product.isFavorite
               ? "Remove from favorites"
               : "Add to favorites"}
           </span>

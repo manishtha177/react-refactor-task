@@ -1,4 +1,4 @@
-import { IFormData, IFormError } from "../interfaces/form";
+import { IFormError } from "../interfaces/form";
 
 export const validateForm = (data: any, error: IFormError) => {
   let formIsValid = true;

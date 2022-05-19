@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IFormData } from "../interfaces/form";
 
 const BASE_URL = "https://fakestoreapi.com";

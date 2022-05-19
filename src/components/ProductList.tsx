@@ -1,5 +1,4 @@
 import * as React from "react";
-import lodash from "lodash";
 import SingleProduct from "./SingleProduct";
 import { IPostsProps, IProduct } from "../interfaces/product-list";
 

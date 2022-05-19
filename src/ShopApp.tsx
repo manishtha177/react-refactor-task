@@ -98,16 +98,16 @@ const ShopApp: React.FC<IShopProps> = () => {
 
   return (
     <React.Fragment>
-      <div className={styles.header}>
+      <div data-testid={"header"} className={styles.header}>
         <div className={`container ${styles.headerImageWrapper}`}>
-          <img src={logo} className={styles.headerImage} />
+          <img alt="logo" src={logo} className={styles.headerImage} />
         </div>
       </div>
 
       <>
         <span className={`container ${styles.main} ${styles.images}`}>
-          <img src={img1} alt="docter" />
-          <img src={img2} alt="engineer" />
+          <img data-testid={"img-1"} src={img1} alt="docter" />
+          <img data-testid={"img-2"} src={img2} alt="engineer" />
         </span>
       </>
 
@@ -134,7 +134,7 @@ const ShopApp: React.FC<IShopProps> = () => {
           </span>
         </div>
 
-        {shopData.products && !!shopData.products.length ? (
+        {shopData.products && shopData.products.length ? (
           <ProductList products={shopData.products} onFav={onFavClick} />
         ) : (
           <div></div>

@@ -48,7 +48,7 @@ export const Form: React.FC<IFormProps> = (props) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
+    <form className={styles.form} onSubmit={(event) => handleSubmit(event)} data-testid={"form"}>
       <span className={styles.label}>Product title: *</span>
 
       <input
