@@ -21,81 +21,72 @@ const ShopApp: React.FC<IShopProps> = () => {
     getProducts()
   }, [])
 
-  const getProducts = async () => {
-    const response = await fetchProducts()
+  const setData = (data: IShopProps) => {
     setShopData((prevData) => ({
       ...prevData,
-      products: response.reverse()
+      ...data
     }));
+  }
+
+  const getProducts = async () => {
+    const response = await fetchProducts()
+    setData({ products: response.reverse() })
   }
 
   const onFavClick = (id: number) => {
     const prods = shopData.products;
     const idx = lodash.findIndex(prods, { id: id })
     prods[idx].isFavorite = !prods[idx].isFavorite;
-
-    setShopData((prevData) => ({ ...prevData, products: prods }));
+    setData({ products: prods })
   }
 
   const onSubmit = async (payload: { title: string; description: string, price: string }) => {
-    const tempProducts = shopData.products;
-    tempProducts.unshift({
-      id: shopData.products.length + 1,
-      title: payload.title,
-      description: payload.description,
-      price: payload.price,
-      isFavorite: false,
-      rating: { rate: 0, count: 0 }
-    })
-
-    setShopData((prevData) => ({
-      ...prevData,
+    setData({
       isOpen: false,
       isShowingMessage: true,
       message: 'Adding Product...'
-    }))
+    })
 
     try {
       const response = await addProduct(payload)
       if (response?.id) {
-        setShopData((prevData) => ({
-          ...prevData,
+        const tempProducts = shopData.products;
+        tempProducts.unshift({
+          id: response?.id,
+          title: payload.title,
+          description: payload.description,
+          price: payload.price,
+          isFavorite: false,
+          rating: { rate: 0, count: 0 }
+        })
+        setData({
           products: tempProducts,
           isShowingMessage: true,
           message: 'Product added successfully...'
-        }));
+        })
       } else {
-        setShopData((prevData) => ({
-          ...prevData,
+        setData({
           isOpen: false,
           isShowingMessage: true,
           message: 'Failed to add product...'
-        }))
+        })
       }
     } catch (error) {
       console.log('error : ', error)
-      setShopData((prevData) => ({
-        ...prevData,
+      setData({
         isOpen: false,
         isShowingMessage: true,
         message: 'Something went wrong'
-      }))
+      })
     } finally {
       setTimeout(() => {
-        setShopData((prevData) => ({
-          ...prevData,
-          isShowingMessage: false,
-          message: ''
-        }))
+        setData({ isShowingMessage: false, message: '' })
       }, 2000)
     }
   }
 
   const toggleAddProductModal = () => {
-    setShopData((prevData: any) => ({
-      ...prevData,
-      isOpen: !prevData.isOpen,
-    }));
+    setData({ isOpen: !shopData.isOpen })
   }
 
   return (
