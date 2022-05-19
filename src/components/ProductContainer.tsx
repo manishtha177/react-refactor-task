@@ -1,6 +1,7 @@
 import * as React from "react";
 import { IProductContainerProps, IProduct } from "../interfaces/product-list";
 import styles from "../shopApp.module.css";
+import { constants } from "../utils/constants";
 import { Button } from "./Button";
 import ProductList from "./ProductList";
 
@@ -13,7 +14,7 @@ const ProductContainer: React.FC<IProductContainerProps> = ({
     <div className={`container ${styles.main}`} style={{ paddingTop: 0 }}>
       <div className={styles.buttonWrapper}>
         <span role="button">
-          <Button onClick={toggleAddProductModal}>Send product proposal</Button>
+          <Button onClick={toggleAddProductModal}>{constants.SEND_PRODUCT_PROPOSAL}</Button>
         </span>
         {shopData?.isShowingMessage && (
           <div className={styles.messageContainer}>
@@ -23,10 +24,10 @@ const ProductContainer: React.FC<IProductContainerProps> = ({
       </div>
 
       <div className={styles.statsContainer}>
-        <span>Total products: {shopData?.products?.length}</span>
+        <span>{constants.TOTAL_PRODUCTS}: {shopData?.products?.length}</span>
         {" - "}
         <span>
-          Number of favorites:{" "}
+        {constants.NUMBER_OF_FAVOURITES}:{" "}
           {
             shopData?.products?.filter((product: IProduct) => product?.isFavorite)
               ?.length
@@ -37,7 +38,7 @@ const ProductContainer: React.FC<IProductContainerProps> = ({
       {shopData?.products && shopData?.products.length ? (
         <ProductList products={shopData?.products} onFav={onFavClick} />
       ) : (
-        <div className={styles.notFound}>No Data Found</div>
+        <div className={styles.notFound}>{constants.NO_DATA_FOUND}</div>
       )}
     </div>
   );

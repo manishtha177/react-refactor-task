@@ -1,6 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { IProductProps } from "../interfaces/single-product";
+import { constants } from "../utils/constants";
 import styles from "./SingleProduct.module.css";
 
 const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
@@ -46,8 +47,8 @@ const SingleProduct: React.FC<IProductProps> = ({ product, onFav }) => {
           <FaStar />{" "}
           <span className={actionBarItemLabel} data-testid={"is-favorite"}>
             {product?.isFavorite
-              ? "Remove from favorites"
-              : "Add to favorites"}
+              ? constants.REMOVE_FROM_FAVOURITE
+              : constants.ADD_TO_FAVOURITE}
           </span>
         </span>
       </span>

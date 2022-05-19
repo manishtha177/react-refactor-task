@@ -6,6 +6,7 @@ import { IShopProps, IShopState } from "./interfaces/shop";
 import Header from "./components/common/Header";
 import Banner from "./components/Banner";
 import ProductContainer from "./components/ProductContainer";
+import { constants } from "./utils/constants";
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
@@ -49,7 +50,7 @@ const ShopApp: React.FC<IShopProps> = () => {
     setData({
       isOpen: false,
       isShowingMessage: true,
-      message: "Adding Product...",
+      message: constants.PRODUCT_ADDING_MESSAGE,
     });
 
     try {
@@ -67,13 +68,13 @@ const ShopApp: React.FC<IShopProps> = () => {
         setData({
           products: tempProducts,
           isShowingMessage: true,
-          message: "Product added successfully...",
+          message: constants.PRODUCT_ADDDED_SUCCESSFULLY_MESSAGE,
         });
       } else {
         setData({
           isOpen: false,
           isShowingMessage: true,
-          message: "Failed to add product...",
+          message: constants.FAILED_TO_ADD_PRODUCT_MESSAGE,
         });
       }
     } catch (error) {
@@ -81,7 +82,7 @@ const ShopApp: React.FC<IShopProps> = () => {
       setData({
         isOpen: false,
         isShowingMessage: true,
-        message: "Something went wrong",
+        message: constants.SOMETHING_WENT_WRONT_MESSAGE,
       });
     } finally {
       setTimeout(() => {

@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, SyntheticEvent } from "react";
 import { IFormData, IFormError, IFormProps } from "../interfaces/form";
+import { constants } from "../utils/constants";
 import { validateForm } from "../utils/validate";
 import { Button } from "./Button";
 import styles from "./Form.module.css";
@@ -47,8 +48,8 @@ export const Form: React.FC<IFormProps> = (props) => {
   };
 
   const fields = [
-    { name: "title", label: "Product Title", type: "text", placeHolder: "Title...", value: formData?.title, onChange: handleChange },
-    { name: "price", label: "Product Price", type: "number", placeHolder: "Price...", value: formData?.price, onChange: handleChange },
+    { name: "title", label: constants.PRODUCT_TITLE, type: "text", placeHolder: "Title...", value: formData?.title, onChange: handleChange },
+    { name: "price", label: constants.PRODUCT_PRICE, type: "number", placeHolder: "Price...", value: formData?.price, onChange: handleChange },
   ];
 
   return (
@@ -59,7 +60,7 @@ export const Form: React.FC<IFormProps> = (props) => {
     >
       {fields.map((field) => (<Input field={field} error={error} />))}
 
-      <span className={styles.label}>Product Description: *</span>
+      <span className={styles.label}>{constants.PRODUCT_DESCRIPTION}: *</span>
 
       <textarea
         placeholder="Start typing product description here..."
@@ -68,7 +69,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         className={styles?.textarea}
         onChange={handleChange}
       />
-      <p className={styles.error}>{error?.description && "Product Description is required"}</p>
+      <p className={styles.error}>{error?.description && `${constants.PRODUCT_DESCRIPTION} is required`}</p>
 
       <div className={styles.buttonWrapper}>
         <Button>Add a product</Button>
