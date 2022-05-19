@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import lodash from "lodash";
-import { Button } from "./components/Button";
-import ProductList from "./components/ProductList";
-import logo from "./images/droppe-logo.png";
-import img1 from "./images/img1.png";
-import img2 from "./images/img2.png";
-import styles from "./shopApp.module.css";
 import AddProductModal from "./components/AddProductModal";
 import useFetch from "./hooks/useFetch";
 import { IShopProps, IShopState } from "./interfaces/shop";
+import Header from "./components/common/Header";
+import Banner from "./components/Banner";
+import ProductContainer from "./components/ProductContainer";
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
@@ -99,48 +96,11 @@ const ShopApp: React.FC<IShopProps> = () => {
 
   return (
     <React.Fragment>
-      <div data-testid={"header"} className={styles.header}>
-        <div className={`container ${styles.headerImageWrapper}`}>
-          <img alt="logo" src={logo} className={styles.headerImage} />
-        </div>
-      </div>
+      <Header />
 
-      <>
-        <span className={`container ${styles.main} ${styles.images}`}>
-          <img data-testid={"img-1"} src={img1} alt="docter" />
-          <img data-testid={"img-2"} src={img2} alt="engineer" />
-        </span>
-      </>
+      <Banner />
 
-      <div className={`container ${styles.main}`} style={{ paddingTop: 0 }}>
-        <div className={styles.buttonWrapper}>
-          <span role="button">
-            <Button onClick={toggleAddProductModal}>
-              Send product proposal
-            </Button>
-          </span>
-          {shopData.isShowingMessage && (
-            <div className={styles.messageContainer}>
-              <i>{shopData.message}</i>
-            </div>
-          )}
-        </div>
-
-        <div className={styles.statsContainer}>
-          <span>Total products: {shopData.products.length}</span>
-          {" - "}
-          <span>
-            Number of favorites:{" "}
-            {shopData.products.filter((product) => product.isFavorite).length}
-          </span>
-        </div>
-
-        {shopData.products && shopData.products.length ? (
-          <ProductList products={shopData.products} onFav={onFavClick} />
-        ) : (
-          <div className={styles.notFound}>No Data Found</div>
-        )}
-      </div>
+      <ProductContainer shopData={shopData} toggleAddProductModal={toggleAddProductModal} onFavClick={onFavClick} />
 
       {shopData.isOpen && (
         <AddProductModal

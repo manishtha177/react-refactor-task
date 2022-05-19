@@ -1,6 +1,14 @@
-export interface IPostsProps {
+import { IShopState } from "./shop";
+
+export interface IProductProps {
   products: IProduct[];
   onFav: (id: number) => void;
+}
+
+export interface IProductContainerProps {
+  shopData: IShopState;
+  toggleAddProductModal: () => void;
+  onFavClick: (id: number) => void;
 }
 
 export interface IProduct {
