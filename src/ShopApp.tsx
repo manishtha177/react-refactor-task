@@ -6,7 +6,6 @@ import { IShopProps, IShopState } from "./interfaces/shop";
 import Header from "./components/common/Header";
 import Banner from "./components/Banner";
 import ProductContainer from "./components/ProductContainer";
-import { constants } from "./utils/constants";
 
 const ShopApp: React.FC<IShopProps> = () => {
   const [shopData, setShopData] = useState<IShopState>({
@@ -16,7 +15,7 @@ const ShopApp: React.FC<IShopProps> = () => {
     message: "",
   });
 
-  const { fetchProducts, addProduct } = useFetch();
+  const { fetchProducts } = useFetch();
 
   useEffect(() => {
     getProducts();
@@ -42,55 +41,6 @@ const ShopApp: React.FC<IShopProps> = () => {
     setData({ products: prods });
   };
 
-  const onSubmit = async (payload: {
-    title: string;
-    description: string;
-    price: number;
-  }) => {
-    setData({
-      isOpen: false,
-      isShowingMessage: true,
-      message: constants.PRODUCT_ADDING_MESSAGE,
-    });
-
-    try {
-      const response = await addProduct(payload);
-      if (response?.id) {
-        const tempProducts = shopData?.products;
-        tempProducts.unshift({
-          id: response?.id,
-          title: payload?.title,
-          description: payload?.description,
-          price: payload?.price,
-          isFavorite: false,
-          rating: { rate: 0, count: 0 },
-        });
-        setData({
-          products: tempProducts,
-          isShowingMessage: true,
-          message: constants.PRODUCT_ADDDED_SUCCESSFULLY_MESSAGE,
-        });
-      } else {
-        setData({
-          isOpen: false,
-          isShowingMessage: true,
-          message: constants.FAILED_TO_ADD_PRODUCT_MESSAGE,
-        });
-      }
-    } catch (error) {
-      console.log("error : ", error);
-      setData({
-        isOpen: false,
-        isShowingMessage: true,
-        message: constants.SOMETHING_WENT_WRONT_MESSAGE,
-      });
-    } finally {
-      setTimeout(() => {
-        setData({ isShowingMessage: false, message: "" });
-      }, 2000);
-    }
-  };
-
   const toggleAddProductModal = () => {
     setData({ isOpen: !shopData?.isOpen });
   };
@@ -107,7 +57,8 @@ const ShopApp: React.FC<IShopProps> = () => {
         <AddProductModal
           isOpen={shopData?.isOpen}
           toggleAddProductModal={toggleAddProductModal}
-          onSubmit={onSubmit}
+          setData={setData}
+          shopData={shopData}
         />
       )}
     </React.Fragment>

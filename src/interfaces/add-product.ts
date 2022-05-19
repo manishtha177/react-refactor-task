@@ -1,3 +1,5 @@
+import { IShopProps, IShopState } from "./shop";
+
 export interface IFormData {
   title: string;
   description: string;
@@ -7,5 +9,6 @@ export interface IFormData {
 export interface IAddProductProps {
   isOpen: boolean;
   toggleAddProductModal: () => void;
-  onSubmit: (payload: IFormData) => void;
+  setData: (payload: IShopProps) => void;
+  shopData: IShopState
 }
