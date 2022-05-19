@@ -6,7 +6,7 @@ import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
-import AddProduct from "./components/AddProduct";
+import AddProductModal from "./components/AddProductModal";
 import useFetch from "./hooks/useFetch";
 import { IShopProps, IShopState } from "./interfaces/shop";
 
@@ -143,7 +143,7 @@ const ShopApp: React.FC<IShopProps> = () => {
       </div>
 
       {shopData.isOpen && (
-        <AddProduct
+        <AddProductModal
           isOpen={shopData.isOpen}
           toggleAddProductModal={toggleAddProductModal}
           onSubmit={onSubmit}

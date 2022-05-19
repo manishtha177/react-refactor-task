@@ -5,11 +5,11 @@ import { FaTimes } from "react-icons/fa";
 import { Form } from "./Form";
 import { IAddProductProps } from "../interfaces/add-product";
 
-const AddProduct: React.FC<IAddProductProps> = ({
+const AddProductModal: React.FC<IAddProductProps> = ({
   isOpen,
   toggleAddProductModal,
   onSubmit,
-}) => {
+}: IAddProductProps) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -28,4 +28,4 @@ const AddProduct: React.FC<IAddProductProps> = ({
   );
 };
 
-export default AddProduct;
+export default AddProductModal;
