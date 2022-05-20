@@ -29,10 +29,17 @@ export const Form: React.FC<IFormProps> = (props: IFormProps) => {
       ...prevError,
       [e?.target?.name]: false,
     }));
-    setFormData((prevData) => ({
-      ...prevData,
-      [e?.target?.name]: e?.target?.value,
-    }));
+    if (e?.target?.name === "price") {
+      setFormData((prevData) => ({
+        ...prevData,
+        [e?.target?.name]: e?.target?.value[0] === "0" ? e?.target?.value[1] : e?.target?.value,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [e?.target?.name]: e?.target?.value,
+      }));
+    }
   };
 
   const handleSubmit = (e: SyntheticEvent) => {
