@@ -1,11 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
-import styles from "../shopApp.module.css";
+import styles from "../../Pages/ShopApp/index.module.css";
 import { FaTimes } from "react-icons/fa";
-import { Form } from "./Form";
-import { IAddProductProps } from "../interfaces/add-product";
-import { constants } from "../utils/constants";
-import useFetch from "../hooks/useFetch";
+import { Form } from "../Form/index";
+import { IAddProductProps } from "../../interfaces/add-product";
+import { constants } from "../../utils/constants";
+import { addProduct } from "../../services/addProduct";
 
 const AddProductModal: React.FC<IAddProductProps> = ({
   isOpen,
@@ -13,8 +13,6 @@ const AddProductModal: React.FC<IAddProductProps> = ({
   setData,
   shopData
 }: IAddProductProps) => {
-  const { addProduct } = useFetch();
-
   const onSubmit = async (payload: {
     title: string;
     description: string;

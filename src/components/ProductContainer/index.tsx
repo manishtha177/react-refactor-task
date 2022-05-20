@@ -1,9 +1,9 @@
 import * as React from "react";
-import { IProductContainerProps, IProduct } from "../interfaces/product-list";
-import styles from "../shopApp.module.css";
-import { constants } from "../utils/constants";
-import { Button } from "./Button";
-import ProductList from "./ProductList";
+import { IProductContainerProps, IProduct } from "../../interfaces/product-list";
+import styles from "../../Pages/ShopApp/index.module.css";
+import { constants } from "../../utils/constants";
+import { Button } from "../Button";
+import ProductList from "../ProductList";
 
 const ProductContainer: React.FC<IProductContainerProps> = ({
   shopData,

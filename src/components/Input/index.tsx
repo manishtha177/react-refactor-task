@@ -1,6 +1,6 @@
 import React from "react";
-import { IInputProps } from "../interfaces/form";
-import styles from "./Form.module.css";
+import { IInputProps } from "../../interfaces/form";
+import styles from "../Form/index.module.css";
 
 const Input: React.FC<IInputProps> = ({ field, error }: IInputProps) => {
   return (

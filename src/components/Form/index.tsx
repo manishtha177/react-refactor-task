@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent, SyntheticEvent } from "react";
-import { IFormData, IFormError, IFormProps, IField } from "../interfaces/form";
-import { constants } from "../utils/constants";
-import { validateForm } from "../utils/validate";
-import { Button } from "./Button";
-import styles from "./Form.module.css";
-import Input from "./Input";
+import { IFormData, IFormError, IFormProps, IField } from "../../interfaces/form";
+import { constants } from "../../utils/constants";
+import { validateForm } from "../../utils/validate";
+import { Button } from "../Button";
+import styles from "./index.module.css";
+import Input from "../Input";
 
 export const Form: React.FC<IFormProps> = (props: IFormProps) => {
   const formDummyData = { title: "", price: 0, description: "" };

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ShopApp from "../ShopApp";
+import ShopApp from "../Pages/ShopApp";
 
 test('render header', () => {
   render(<ShopApp />);

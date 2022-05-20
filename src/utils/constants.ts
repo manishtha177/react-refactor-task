@@ -13,3 +13,5 @@ export const constants = {
   PRODUCT_PRICE: "Product Price",
   PRODUCT_DESCRIPTION: "Product Description"
 }
+
+export const BASE_URL = "https://fakestoreapi.com";
