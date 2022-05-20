@@ -11,7 +11,7 @@ const AddProductModal: React.FC<IAddProductProps> = ({
   isOpen,
   toggleAddProductModal,
   setData,
-  shopData
+  shopData,
 }: IAddProductProps) => {
   const onSubmit = async (payload: {
     title: string;

@@ -3,7 +3,7 @@ import img1 from "../../images/img1.png";
 import img2 from "../../images/img2.png";
 import styles from "../../Pages/ShopApp/index.module.css";
 
-const Banner: React.FC = ():JSX.Element => {
+const Banner: React.FC = (): JSX.Element => {
   return (
     <>
       <span className={`container ${styles.main} ${styles.images}`}>

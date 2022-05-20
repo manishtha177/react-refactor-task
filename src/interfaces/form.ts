@@ -27,5 +27,5 @@ export interface IField {
 
 export interface IInputProps {
   field: IField;
-  error: any
+  error: any;
 }

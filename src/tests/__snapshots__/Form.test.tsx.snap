@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+<form
+  class="form"
+  data-testid="form"
+>
+  <div>
+    <span
+      class="label"
+    >
+      Product Title
+       *
+    </span>
+    <input
+      class="input"
+      name="title"
+      placeholder="Title..."
+      type="text"
+      value=""
+    />
+    <p
+      class="error"
+    />
+  </div>
+  <div>
+    <span
+      class="label"
+    >
+      Product Price
+       *
+    </span>
+    <input
+      class="input"
+      name="price"
+      placeholder="Price..."
+      type="number"
+      value="0"
+    />
+    <p
+      class="error"
+    />
+  </div>
+  <span
+    class="label"
+  >
+    Product Description
+    : *
+  </span>
+  <textarea
+    class="textarea"
+    name="description"
+    placeholder="Start typing product description here..."
+  />
+  <p
+    class="error"
+  />
+  <div
+    class="buttonWrapper"
+  >
+    <button
+      class="button"
+      data-testid="send-product-button"
+    >
+      Add a product
+    </button>
+  </div>
+</form>
+`;
+
+exports[`render form & take snapshot for correct render 1`] = `
+<form
+  class="form"
+  data-testid="form"
+>
+  <div>
+    <span
+      class="label"
+    >
+      Product Title
+       *
+    </span>
+    <input
+      class="input"
+      name="title"
+      placeholder="Title..."
+      type="text"
+      value=""
+    />
+    <p
+      class="error"
+    />
+  </div>
+  <div>
+    <span
+      class="label"
+    >
+      Product Price
+       *
+    </span>
+    <input
+      class="input"
+      name="price"
+      placeholder="Price..."
+      type="number"
+      value="0"
+    />
+    <p
+      class="error"
+    />
+  </div>
+  <span
+    class="label"
+  >
+    Product Description
+    : *
+  </span>
+  <textarea
+    class="textarea"
+    name="description"
+    placeholder="Start typing product description here..."
+  />
+  <p
+    class="error"
+  />
+  <div
+    class="buttonWrapper"
+  >
+    <button
+      class="button"
+      data-testid="send-product-button"
+    >
+      Add a product
+    </button>
+  </div>
+</form>
+`;
+
+exports[`render form 1`] = `
+<form
+  class="form"
+  data-testid="form"
+>
+  <div>
+    <span
+      class="label"
+    >
+      Product Title
+       *
+    </span>
+    <input
+      class="input"
+      name="title"
+      placeholder="Title..."
+      type="text"
+      value=""
+    />
+    <p
+      class="error"
+    />
+  </div>
+  <div>
+    <span
+      class="label"
+    >
+      Product Price
+       *
+    </span>
+    <input
+      class="input"
+      name="price"
+      placeholder="Price..."
+      type="number"
+      value="0"
+    />
+    <p
+      class="error"
+    />
+  </div>
+  <span
+    class="label"
+  >
+    Product Description
+    : *
+  </span>
+  <textarea
+    class="textarea"
+    name="description"
+    placeholder="Start typing product description here..."
+  />
+  <p
+    class="error"
+  />
+  <div
+    class="buttonWrapper"
+  >
+    <button
+      class="button"
+      data-testid="send-product-button"
+    >
+      Add a product
+    </button>
+  </div>
+</form>
+`;

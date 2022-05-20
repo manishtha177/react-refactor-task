@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render header & take snapshot for correct render 1`] = `
+<div
+  class="header"
+  data-testid="header"
+>
+  <div
+    class="container headerImageWrapper"
+  >
+    <img
+      alt="logo"
+      class="headerImage"
+      src="droppe-logo.png"
+    />
+  </div>
+</div>
+`;

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import logo from "../../images/droppe-logo.png";
 
-const Header: React.FC = ():JSX.Element => {
+const Header: React.FC = (): JSX.Element => {
   return (
     <div data-testid={"header"} className={styles.header}>
       <div className={`container ${styles.headerImageWrapper}`}>

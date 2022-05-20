@@ -11,7 +11,7 @@ export const constants = {
   NO_DATA_FOUND: "No Data Found",
   PRODUCT_TITLE: "Product Title",
   PRODUCT_PRICE: "Product Price",
-  PRODUCT_DESCRIPTION: "Product Description"
-}
+  PRODUCT_DESCRIPTION: "Product Description",
+};
 
 export const BASE_URL = "https://fakestoreapi.com";

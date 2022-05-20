@@ -14,7 +14,9 @@ const Input: React.FC<IInputProps> = ({ field, error }: IInputProps) => {
         className={styles.input}
         onChange={field?.onChange}
       />
-      <p className={styles.error}>{error[field?.name] && `${field?.label} is required`}</p>
+      <p className={styles.error}>
+        {error[field?.name] && `${field?.label} is required`}
+      </p>
     </div>
   );
 };

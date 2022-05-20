@@ -10,5 +10,5 @@ export interface IAddProductProps {
   isOpen: boolean;
   toggleAddProductModal: () => void;
   setData: (payload: IShopProps) => void;
-  shopData: IShopState
+  shopData: IShopState;
 }

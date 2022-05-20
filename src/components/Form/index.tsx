@@ -1,5 +1,10 @@
 import React, { useState, ChangeEvent, SyntheticEvent } from "react";
-import { IFormData, IFormError, IFormProps, IField } from "../../interfaces/form";
+import {
+  IFormData,
+  IFormError,
+  IFormProps,
+  IField,
+} from "../../interfaces/form";
 import { constants } from "../../utils/constants";
 import { validateForm } from "../../utils/validate";
 import { Button } from "../Button";
@@ -73,7 +78,7 @@ export const Form: React.FC<IFormProps> = (props: IFormProps) => {
       data-testid={"form"}
     >
       {fields.map((field) => (
-        <Input field={field} error={error} />
+        <Input key={field.name} field={field} error={error} />
       ))}
 
       <span className={styles.label}>{constants.PRODUCT_DESCRIPTION}: *</span>
