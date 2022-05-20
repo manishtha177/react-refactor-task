@@ -3,7 +3,7 @@ import AddProductModal from "../../components/AddProductModal";
 import useFetch from "../../hooks/useFetch";
 import { IShopProps, IShopState } from "../../interfaces/shop";
 import Header from "../../components/Header";
-import Banner from "../../components/Banner";
+import Banner from "./banner";
 import ProductContainer from "../../components/ProductContainer";
 
 const ShopApp: React.FC<IShopProps> = (): JSX.Element => {
@@ -37,7 +37,7 @@ const ShopApp: React.FC<IShopProps> = (): JSX.Element => {
   }, [data]);
 
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Banner />
       <ProductContainer
@@ -53,7 +53,7 @@ const ShopApp: React.FC<IShopProps> = (): JSX.Element => {
           shopData={shopData}
         />
       )}
-    </React.Fragment>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import img1 from "../../images/img1.png";
 import img2 from "../../images/img2.png";
-import styles from "../../Pages/ShopApp/index.module.css";
+import styles from "./index.module.css";
 
 const Banner: React.FC = (): JSX.Element => {
   return (
