@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Droppe+Sans:wght@300;400;600&display=swap"); /* Font used in old version of webshop */
+/*This is custom font & at this moment this font is not available in google fonts that's why it's giving 400 and for that I am commenting it.*/
+/* @import url("https://fonts.googleapis.com/css2?family=Droppe+Sans:wght@300;400;600&display=swap"); Font used in old version of webshop */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
