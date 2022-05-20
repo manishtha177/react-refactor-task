@@ -1,5 +1,19 @@
 # Developer at Droppe - React refactoring task
 
+## Known Issues
+
+- Currently, When user add product it does not saved in API.
+- When user add product in favourites it does not saved in backend and after refresh it disappears.
+- After submitting form data the backend return only ID of the newly created product instead of full object.
+- Currently, There is no option to give rating but in UI we are displaying rating.
+
+## Enhancements can be done if time permits
+- Currently, only one product card is displayed in a single row that can be beautify more.
+- There would be an server side or client side pagination for the entries.
+- We can add search and filter functionality as well for the product.
+- Would add lazy load on scroll down with infinite scroll functionality.
+- Maybe we can add more flows in this app like purchase, payment etc.
+
 ## Available Scripts
 
 In the project directory, you can run:
