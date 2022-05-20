@@ -7,7 +7,7 @@ const Banner: React.FC = (): JSX.Element => {
   return (
     <>
       <span className={`container ${styles.main} ${styles.images}`}>
-        <img data-testid={"img-1"} src={img1} alt="docter" />
+        <img data-testid={"img-1"} src={img1} alt="doctor" />
         <img data-testid={"img-2"} src={img2} alt="engineer" />
       </span>
     </>
