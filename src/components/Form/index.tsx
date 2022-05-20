@@ -24,22 +24,20 @@ export const Form: React.FC<IFormProps> = (props: IFormProps) => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    let name = e?.target?.name;
+    let value = e?.target?.value;
     e.persist();
     setError((prevError) => ({
       ...prevError,
-      [e?.target?.name]: false,
+      [name]: false,
     }));
-    if (e?.target?.name === "price") {
-      setFormData((prevData) => ({
-        ...prevData,
-        [e?.target?.name]: e?.target?.value[0] === "0" ? e?.target?.value[1] : e?.target?.value,
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [e?.target?.name]: e?.target?.value,
-      }));
+    if ("price" === name) {
+      value = value[0] === "0" ? value[1] : value;
     }
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e: SyntheticEvent) => {
